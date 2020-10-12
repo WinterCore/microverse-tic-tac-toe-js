@@ -1,0 +1,46 @@
+:root {
+  --board-size: 450px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+#player {
+  display: none;
+}
+
+#board {
+  width: 100%;
+  max-width: var(--board-size);
+  height: var(--board-size);
+  border: 3px solid black;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  display: none;
+}
+
+#board .cell {
+  background: cyan;
+  transition: background 250ms linear;
+  cursor: pointer;
+  border: 3px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 40px;
+}
+
+#board .cell:hover {
+  background: purple;
+}
