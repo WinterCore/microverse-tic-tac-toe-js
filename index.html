@@ -10,14 +10,13 @@
     <form id="player">
         <h1></h1>
         <div class="input-group">
-            <label for="player_name">Name</label>
-            <input type="text" id="player_name" />
+            <input type="text" id="player_name" placeholder="Your Name" required />
         </div>
         <button>Save</button>
     </form>
 
     <div class="board-container">
-        <h2 id="game-state"></h2>
+        <h1 id="game-state"></h1>
         <div id="board">
             <div id="cell-0" data-cell="0" class="cell"></div>
             <div id="cell-1" data-cell="1" class="cell"></div>
@@ -29,9 +28,7 @@
             <div id="cell-7" data-cell="7" class="cell"></div>
             <div id="cell-8" data-cell="8" class="cell"></div>
         </div>
-        <div>
-            <button id="play-again">Play again?</button>
-        </div>
+        <button id="play-again">Play again?</button>
     </div>
 
     <script src="assets/js/main.js"></script>
