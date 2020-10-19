@@ -168,14 +168,15 @@ const game = (() => {
     }
 
     async function init() {
-        // let data = null;
-        // display.showPlayerForm('Player 1 details');
-        // data = await display.getPlayerFormData();
-        // player1 = createPlayer(data.name, 'X');
-        // display.showPlayerForm('Player 2 details');
-        // data = await display.getPlayerFormData();
-        // player2 = createPlayer(data.name, 'O');
-        // display.hidePlayerForm();
+        let data = null;
+        display.showPlayerForm('Player 1 details');
+        data = await display.getPlayerFormData();
+        player1 = createPlayer(data.name, 'X');
+        display.showPlayerForm('Player 2 details');
+        data = await display.getPlayerFormData();
+        player2 = createPlayer(data.name, 'O');
+        display.hidePlayerForm();
+        currentPlayer = player1;
 
         gameboard.showBoard();
             gameboard.onCellClick((e) => handleTurn(+e.target.dataset.cell));
