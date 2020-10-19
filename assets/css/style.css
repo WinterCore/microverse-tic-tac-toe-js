@@ -48,3 +48,7 @@ body {
 #board .cell:hover {
   background: purple;
 }
+
+#play-again {
+  display: none;
+}

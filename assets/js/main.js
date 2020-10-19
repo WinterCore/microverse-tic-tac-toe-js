@@ -46,7 +46,7 @@ const display = (() => {
 
 const gameboard = (() => {
 
-    const gameCells = ["", "", "", "", "", "", "", "", ""];
+    let gameCells = ["", "", "", "", "", "", "", "", ""];
     const $boardDiv = document.getElementById('board');
     const $boardCells = $boardDiv.querySelectorAll('.cell');
     const $gameStateDiv = document.querySelector('#game-state');
@@ -121,7 +121,9 @@ const gameboard = (() => {
 
     const clear = () => {
         $boardCells.forEach((div) => div.innerHTML = '');
+        gameCells = ["", "", "", "", "", "", "", "", ""];
     };
+
 
     return {
         showBoard,
@@ -135,12 +137,13 @@ const gameboard = (() => {
 })();
 
 const game = (() => {
+    const $playAgain = document.querySelector('#play-again');
     let player1 = createPlayer('Test 1', 'X'),
         player2 = createPlayer('Test 2', 'O'),
         currentPlayer = player1;
 
-    function cleanup() {
-
+    const showPlayAgain = () => {
+        $playAgain.style.display ='block';
     }
 
     function handleTurn(cell) {
@@ -150,10 +153,12 @@ const game = (() => {
         switch (gameboard.checkWinner(currentPlayer.getShape())) {
             case 'win':
                 gameboard.updateGameStateDisplay(`${currentPlayer.getName()} has won.`);
+                showPlayAgain();
                 gameboard.clearClickListener();
                 return;
             case 'draw':
                 gameboard.updateGameStateDisplay(`It's a draw.`);
+                showPlayAgain();
                 gameboard.clearClickListener();
                 return;
         }
@@ -173,9 +178,15 @@ const game = (() => {
         // display.hidePlayerForm();
 
         gameboard.showBoard();
+            gameboard.onCellClick((e) => handleTurn(+e.target.dataset.cell));
+            gameboard.updateGameStateDisplay(`${currentPlayer.getName()}'s turn.`);
+    }
+
+    $playAgain.addEventListener("click", function (){
+        gameboard.clear();        
         gameboard.onCellClick((e) => handleTurn(+e.target.dataset.cell));
         gameboard.updateGameStateDisplay(`${currentPlayer.getName()}'s turn.`);
-    }
+    });
 
     return {
         init
