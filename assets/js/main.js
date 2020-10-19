@@ -31,7 +31,7 @@ const display = (() => {
                 $name.value = '';
                 $form.removeEventListener('submit', onSubmit);
             }
-    
+
             $form.addEventListener('submit', onSubmit);
         });
     };
@@ -44,46 +44,26 @@ const display = (() => {
     };
 })();
 
-const game = (() => {
-    // let board = Array.from({ length: 9 }),
-        player1 = null,
-        player2 = null;
-
-
-
-    async function init() {
-        // board = Array.from({ length: 9 });
-
-        let data = null;
-        display.showPlayerForm('Player 1 details');
-        data = await display.getPlayerFormData();
-        player1 = createPlayer(data.name, 'X');
-        display.showPlayerForm('Player 2 details');
-        data = await display.getPlayerFormData();
-        player2 = createPlayer(data.name, 'O');
-        display.hidePlayerForm();
-    }
-
-    return {
-        init
-    };
-})();
-
 const gameboard = (() => {
 
     const gameCells = ["", "", "", "", "", "", "", "", ""];
+    const $boardDiv = document.getElementById('board');
+    const $boardCells = $boardDiv.querySelectorAll('.cell');
+    const $gameStateDiv = document.querySelector('#game-state');
+
+    let clickCallback;
 
     const getGameCells = () => {
         return gameCells;
     }
 
-    const fillPlayedCell = (index) => {
+    const fillPlayedCell = (index, shape) => {
         if (gameCells[index] === "") {
-            gameCells[index] = getCurrentPlayer().getShape();
+            gameCells[index] = shape;
+            $boardDiv.querySelector(`#cell-${index}`).innerHTML = shape;
             return true;
-        }
-        else { 
-        return false;
+        } else {
+            return false;
         }
     };
 
@@ -119,21 +99,87 @@ const gameboard = (() => {
         }
 
         return 'draw';
-        
     }
 
-    const displayBoard = (() => {
-        const boardDiv = document.getElementById('#board');
-    
-    
-    
-        return {
-            showPlayerForm,
-            getPlayerFormData,
-            hidePlayerForm
-        };
+    const showBoard = () => $boardDiv.style.display = 'grid';
+    const updateGameStateDisplay = (str) => {
+        $gameStateDiv.innerHTML = str;
+    };
+
+    const onCellClick = (cb) => {
+        clickCallback = cb;
+        $boardCells.forEach((cell) => {
+            cell.addEventListener('click', cb);
+        });
+    };
+
+    const clearClickListener = () => {
+        $boardCells.forEach((cell) => {
+            cell.removeEventListener('click', clickCallback);
+        });
+    };
+
+    const clear = () => {
+        $boardCells.forEach((div) => div.innerHTML = '');
+    };
+
+    return {
+        showBoard,
+        onCellClick,
+        fillPlayedCell,
+        checkWinner,
+        updateGameStateDisplay,
+        clearClickListener,
+        clear
+    };
+})();
+
+const game = (() => {
+    let player1 = createPlayer('Test 1', 'X'),
+        player2 = createPlayer('Test 2', 'O'),
+        currentPlayer = player1;
+
+    function cleanup() {
+
+    }
+
+    function handleTurn(cell) {
+        if (!gameboard.fillPlayedCell(cell, currentPlayer.getShape())) return;
 
 
+        switch (gameboard.checkWinner(currentPlayer.getShape())) {
+            case 'win':
+                gameboard.updateGameStateDisplay(`${currentPlayer.getName()} has won.`);
+                gameboard.clearClickListener();
+                return;
+            case 'draw':
+                gameboard.updateGameStateDisplay(`It's a draw.`);
+                gameboard.clearClickListener();
+                return;
+        }
+
+        currentPlayer = currentPlayer === player1 ? player2 : player1;
+        gameboard.updateGameStateDisplay(`${currentPlayer.getName()}'s turn.`);
+    }
+
+    async function init() {
+        // let data = null;
+        // display.showPlayerForm('Player 1 details');
+        // data = await display.getPlayerFormData();
+        // player1 = createPlayer(data.name, 'X');
+        // display.showPlayerForm('Player 2 details');
+        // data = await display.getPlayerFormData();
+        // player2 = createPlayer(data.name, 'O');
+        // display.hidePlayerForm();
+
+        gameboard.showBoard();
+        gameboard.onCellClick((e) => handleTurn(+e.target.dataset.cell));
+        gameboard.updateGameStateDisplay(`${currentPlayer.getName()}'s turn.`);
+    }
+
+    return {
+        init
+    };
 })();
 
 game.init().catch(console.log);
