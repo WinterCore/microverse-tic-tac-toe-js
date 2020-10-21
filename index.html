@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
+    <title>Tic Tac Toe</title>
+</head>
+<body>
+    <form id="player">
+        <h1></h1>
+        <div class="input-group">
+            <input type="text" id="player_name" placeholder="Your Name" required />
+        </div>
+        <button>Save</button>
+    </form>
+
+    <div class="board-container">
+        <h1 id="game-state"></h1>
+        <div id="board">
+            <div id="cell-0" data-cell="0" class="cell"></div>
+            <div id="cell-1" data-cell="1" class="cell"></div>
+            <div id="cell-2" data-cell="2" class="cell"></div>
+            <div id="cell-3" data-cell="3" class="cell"></div>
+            <div id="cell-4" data-cell="4" class="cell"></div>
+            <div id="cell-5" data-cell="5" class="cell"></div>
+            <div id="cell-6" data-cell="6" class="cell"></div>
+            <div id="cell-7" data-cell="7" class="cell"></div>
+            <div id="cell-8" data-cell="8" class="cell"></div>
+        </div>
+        <button id="play-again">Play again?</button>
+    </div>
+
+    <script src="assets/js/bundle.min.js"></script>
+</body>
+</html>

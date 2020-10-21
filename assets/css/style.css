@@ -1,0 +1,119 @@
+:root {
+  --board-size: 450px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #aaffa9, #11ffbd);
+}
+
+.board-container {
+  min-width: var(--board-size);
+  display: none;
+}
+
+#player {
+  display: none;
+}
+
+#board {
+  width: 100%;
+  max-width: var(--board-size);
+  height: var(--board-size);
+  border: 3px solid black;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  display: grid;
+}
+
+#board .cell {
+  background: transparent;
+  transition: background 250ms linear;
+  cursor: pointer;
+  border: 3px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 40px;
+}
+
+#board .cell:hover {
+  background: #812fa2;
+}
+
+#play-again {
+  display: none;
+  margin: 20px 0;
+}
+
+form {
+  font-family: sans-serif, Arial;
+}
+
+h1 {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: black;
+}
+
+input {
+  border: 2px solid #812fa2;
+  padding: 10px 8px;
+  outline: 0;
+  background: transparent;
+  color: #812fa2;
+  transition: all 200ms linear;
+}
+
+input:focus {
+  color: #fff;
+  background: #812fa2;
+}
+
+.input-group {
+  margin: 20px 0;
+}
+
+.input-group label,
+.input-group input {
+  display: block;
+}
+
+.input-group input {
+  width: 100%;
+}
+
+button {
+  outline: 0;
+  border: 2px solid #812fa2;
+  color: #812fa2;
+  background: transparent;
+  transition: all 200ms linear;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px 20px;
+  width: 100%;
+}
+
+button:hover {
+  color: #fff;
+  background: #812fa2;
+}
+
+.display-none {
+  display: none !important;
+}
+
+.display-block {
+  display: block !important;
+}
