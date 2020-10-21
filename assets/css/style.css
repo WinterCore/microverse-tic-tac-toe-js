@@ -109,3 +109,11 @@ button:hover {
   color: #fff;
   background: #812fa2;
 }
+
+.display-none {
+  display: none !important;
+}
+
+.display-block {
+  display: block !important;
+}

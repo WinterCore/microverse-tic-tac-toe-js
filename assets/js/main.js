@@ -12,11 +12,12 @@ const display = (() => {
 
   const showPlayerForm = (heading) => {
     $form.querySelector('h1').innerHTML = heading;
-    $form.style.display = 'block';
+    $form.classList.add('display-block');
   };
 
   const hidePlayerForm = () => {
-    $form.style.display = 'none';
+    $form.classList.remove('display-block');
+    $form.classList.add('display-none');
   };
 
   const getPlayerFormData = () => new Promise((resolve) => {
@@ -92,7 +93,7 @@ const gameboard = (() => {
   };
 
   const showBoard = () => {
-    $boardDiv.style.display = 'block';
+    $boardDiv.classList.add('display-block');
   };
 
   const updateGameStateDisplay = (str) => {
@@ -137,7 +138,7 @@ const game = (() => {
   let currentPlayer = player1;
 
   const showPlayAgain = () => {
-    $playAgain.style.display = 'block';
+    $playAgain.classList.add('display-block');
   };
 
   function handleTurn(cell) {
