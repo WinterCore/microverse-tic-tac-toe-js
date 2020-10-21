@@ -22,7 +22,8 @@
 - Install [Node.js](https://nodejs.org/en/download/)
 - Clone this repository by running `git clone https://github.com/WinterCore/microverse-tic-tac-toe-js`
 - Change your current working directory to the project `cd microverse-tic-tac-toe-js`
-- Open the `index.html` file in your favorite browser.
+- Run `npm install`
+- Run `npm start`
 - Enjoy
 
 
