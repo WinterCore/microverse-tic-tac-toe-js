@@ -15,7 +15,7 @@
 - HTML
 - CSS
 
-## [Live demo](https://rawcdn.githack.com/WinterCore/microverse-tic-tac-toe-js/feature/tic-tac-toe-implementation/index.html)
+## [Live demo](https://wintercore.github.io/microverse-tic-tac-toe-js)
 
 ### how to run locally
 
