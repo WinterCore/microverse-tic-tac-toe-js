@@ -17,7 +17,7 @@
 
 ## [Live demo](https://wintercore.github.io/microverse-tic-tac-toe-js)
 
-### how to run locally
+## How to run locally
 
 - Install [Node.js](https://nodejs.org/en/download/)
 - Clone this repository by running `git clone https://github.com/WinterCore/microverse-tic-tac-toe-js`
@@ -25,6 +25,13 @@
 - Run `npm install`
 - Run `npm start`
 - Enjoy
+
+## How to run the tests
+
+- Follow the first 4 steps of the [section above](#how-to-run-locally)
+- Run `npm run test`
+
+Note: The tests reside inside of the `tests` folder.
 
 
 ## Authors
